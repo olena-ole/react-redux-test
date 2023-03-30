@@ -22,19 +22,24 @@ const store = createStore(reducer);
 const update = () => {
   document.getElementById('counter').textContent = store.getState();
 }
+
 store.subscribe(update);
 
+const inc = () => ({ type: 'INC'});
+const dec = () => ({ type: 'DEC'});
+const rnd = (value) => ({type: 'RND', payload: value});
+
 document.getElementById('inc').addEventListener('click', () => {
-  store.dispatch({type: 'INC'});
+  store.dispatch(inc());
 })
 
 document.getElementById('dec').addEventListener('click', () => {
-  store.dispatch({type: 'DEC'});
+  store.dispatch(dec());
 })
 
 document.getElementById('rnd').addEventListener('click', () => {
-  const value = Math.floor(Math.random() * 11);
-  store.dispatch({type: 'RND', payload: value});
+  const value = Math.floor(Math.random() * 10);
+  store.dispatch(rnd(value));
 })
 
 
